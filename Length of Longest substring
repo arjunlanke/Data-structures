@@ -15,3 +15,7 @@ function lengthOfLongestSubstring($s) {
     }
     return $maxStrLen;
 }
+
+Sample input
+$s = "(()";
+$s = ")()())";
