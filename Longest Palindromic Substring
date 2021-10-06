@@ -1,0 +1,44 @@
+/**
+ * @param String $s
+ * @return String
+ */
+function longestPalindrome($s) {
+    $definedMaxLength = 1;
+    $result = '';
+    $length = strlen($s);
+    if($length == 0){
+        return '';
+    }else{
+        for($i=0;$i<$length;$i++){
+            for($maxLength = $definedMaxLength; $maxLength<=$length;$maxLength++)
+            {
+                if($maxLength%2 == 0){
+                    //even number
+                    $start = $i - ($maxLength/2);
+                }else{
+                    //odd number
+                    $start = $i - (($maxLength-1)/2);
+                }
+                if($start < 0){
+                    break;
+                }
+                $end = $start+$maxLength;
+                if($end>$length){
+                    break;
+                }
+                $lsStr = substr($s,$start,$maxLength);
+                if($lsStr == strrev($lsStr)){
+                    $result = $lsStr;
+                    $definedMaxLength = $maxLength;
+                }else{
+                    if($definedMaxLength < ($maxLength-1)){
+                        break;
+                    }else{
+                        continue;
+                    }
+                }
+            }
+        }
+    }
+    return $result;
+}
